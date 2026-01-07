@@ -59,4 +59,11 @@ public class Rectangle extends Shape {
         return super.toString()+
                 (isEmpty ? "":", [a:"+(int) a+", b:"+(int)b+"]");
     }
+    @Override
+    public String toSVG(){
+        Point corner = getCorner();
+        return String.format("<rect width='%f' height='%f' x='%f' y='%f' fill='rgb(%d,%d,%d)' />",
+                a,b, corner.x,corner.y, color.getRed(),color.getGreen(),color.getBlue());
+
+    }
 }

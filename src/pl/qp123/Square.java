@@ -23,4 +23,13 @@ public class Square extends Rectangle{
     public Circle getInscribedCircle(Color color){
         return new Circle(color, center,a/2);
     }
+
+
+    @Override
+    public String toSVG(){
+        Point corner = getCorner();
+        return String.format("<rect width='%f' height='%f' x='%f' y='%f' fill='rgb(%d,%d,%d)' />",
+                a,a, corner.x,corner.y, color.getRed(),color.getGreen(),color.getBlue());
+
+    }
 }

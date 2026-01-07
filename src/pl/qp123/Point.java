@@ -1,6 +1,8 @@
 package pl.qp123;
 
-public class Point implements Cloneable {
+import java.io.Serializable;
+
+public class Point implements Cloneable, Serializable {
     final public static double
         PRECISION=0.001;
     public double x;

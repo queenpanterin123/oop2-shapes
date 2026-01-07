@@ -27,4 +27,11 @@ public class Circle extends Ellipse {
         double side = 2*ax1;
         return new Square(color, center,side);
     }
+
+    @Override
+    public String toSVG(){
+        return String.format("<circle cx='%f' cy='%f' r='%f' fill='rgb(%d,%d,%d)' />",
+                center.x, center.y, ax1, color.getRed(),color.getGreen(),color.getBlue());
+
+    }
 }

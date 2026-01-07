@@ -59,5 +59,12 @@ public class Ellipse extends Shape {
         return new Circle(color, center, radius);
     }
 
+    @Override
+    public String toSVG(){
+        return String.format("<ellipserx='%f' ry='%f' cx='%f' cy='%f' fill='rgb(%d,%d,%d)' />",
+                ax1,ax2,center.x, center.y, color.getRed(),color.getGreen(),color.getBlue());
+
+    }
+
 }
 

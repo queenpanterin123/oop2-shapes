@@ -2,8 +2,9 @@ package pl.qp123;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 
-abstract public class Shape {
+abstract public class Shape implements Serializable {
     //name, color
     protected String name;
     protected Color color;
@@ -54,4 +55,7 @@ abstract public class Shape {
         return "rgb "+color.getRed()+":"
                 +color.getGreen()+":"+color.getBlue();
     }
+
+    public abstract String toSVG();
+
 }
