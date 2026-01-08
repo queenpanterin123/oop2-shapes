@@ -44,7 +44,7 @@ public class Ellipse extends Shape {
         g2d.setColor(color);
         Point corner=getCorner();
         Ellipse2D.Double ellipse=
-                new Ellipse2D.Double(corner.x,corner.y,ax1,ax2);
+                new Ellipse2D.Double(corner.x,corner.y,2*ax1,2*ax2);
         g2d.draw(ellipse);
         g2d.fill(ellipse);
     }
