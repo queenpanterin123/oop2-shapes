@@ -28,7 +28,7 @@ public class Point implements Cloneable, Serializable {
         return new Point(x+p.x,y+p.y);
     }
     public Point subtract(Point p){
-        return new Point(x-p.x,y-p.x);
+        return new Point(x-p.x,y-p.y);
     }
     public static Point midPoint(Point a, Point b){
         return (a.add(b)).multiply(0.5);

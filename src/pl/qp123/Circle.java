@@ -20,8 +20,19 @@ public class Circle extends Ellipse {
         String rad= JOptionPane.showInputDialog(frame,
                 "Enter radius of the circle r",
                 "10");
-        ax1=Double.parseDouble(rad);
-        ax2=ax1;
+        if(rad==null){
+            return;
+        }
+        try{
+            ax1=Double.parseDouble(rad);
+            ax2=ax1;
+            if(ax1<0){
+                JOptionPane.showMessageDialog(frame,"Error: Invalid input");
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(frame, "Error: Invalid input");
+        }
+
     }
     public Square getCircumscribedSquare(Color color){
         double side = 2*ax1;
@@ -30,7 +41,7 @@ public class Circle extends Ellipse {
 
     @Override
     public String toSVG(){
-        return String.format("<circle cx='%f' cy='%f' r='%f' fill='rgb(%d,%d,%d)' />",
+        return String.format("<circle cx=\"%.2f\" cy=\"%.2f\" r=\"%.2f\" fill=\"rgb(%d,%d,%d)\" />",
                 center.x, center.y, ax1, color.getRed(),color.getGreen(),color.getBlue());
 
     }

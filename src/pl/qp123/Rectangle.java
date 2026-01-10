@@ -37,14 +37,24 @@ public class Rectangle extends Shape {
                 new Point(a/2,b/2).vecLength());
     }
     @Override
-    protected void getExtraData(JFrame frame){
-        String sides= JOptionPane.showInputDialog(frame,
+    protected void getExtraData(JFrame frame) {
+        String sides = JOptionPane.showInputDialog(frame,
                 "Enter sides lengths a:b",
                 "105:55");
-        String[] sidesArray=sides.split(":");
-        a=Double.parseDouble(sidesArray[0]);
-        b=Double.parseDouble(sidesArray[1]);
+        if (sides == null) return;
+        try {
+            String[] sidesArray = sides.split(":");
+            double a = Double.parseDouble(sidesArray[0].trim());
+            double b = Double.parseDouble(sidesArray[1].trim());
+
+            if (a < 0 || b < 0) {
+                JOptionPane.showMessageDialog(frame,"Invalid input");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(frame, "Error: Invalid input");
+        }
     }
+
     @Override
     public void draw(Graphics2D g2d){
         g2d.setColor(color);
@@ -62,7 +72,7 @@ public class Rectangle extends Shape {
     @Override
     public String toSVG(){
         Point corner = getCorner();
-        return String.format("<rect width='%f' height='%f' x='%f' y='%f' fill='rgb(%d,%d,%d)' />",
+        return String.format("<rect width=\"%.2f\" height=\"%.2f\" x=\"%.2f\" y=\"%.2f\" fill=\"rgb(%d,%d,%d)\" />",
                 a,b, corner.x,corner.y, color.getRed(),color.getGreen(),color.getBlue());
 
     }

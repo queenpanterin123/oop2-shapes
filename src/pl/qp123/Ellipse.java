@@ -35,9 +35,20 @@ public class Ellipse extends Shape {
         String ax= JOptionPane.showInputDialog(frame,
                 "Enter the axis lengths ax1:ax2",
                 "20:30");
-        String[] axArray=ax.split(":");
-        ax1=Double.parseDouble(axArray[0]);
-        ax2=Double.parseDouble(axArray[1]);
+        if(ax==null){
+            return;
+        }
+        try{
+            String[] axArray=ax.split(":");
+            ax1=Double.parseDouble(axArray[0]);
+            ax2=Double.parseDouble(axArray[1]);
+            if(ax1<0||ax2<0){
+                JOptionPane.showMessageDialog(frame,"Error: Invalid input");
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(frame, "Error: Invalid input");
+        }
+
     }
     @Override
     public void draw(Graphics2D g2d){
@@ -61,7 +72,7 @@ public class Ellipse extends Shape {
 
     @Override
     public String toSVG(){
-        return String.format("<ellipserx='%f' ry='%f' cx='%f' cy='%f' fill='rgb(%d,%d,%d)' />",
+        return String.format("<ellipse rx=\"%.2f\" ry=\"%.2f\" cx=\"%.2f\" cy=\"%.2f\" fill=\"rgb(%d,%d,%d)\" />",
                 ax1,ax2,center.x, center.y, color.getRed(),color.getGreen(),color.getBlue());
 
     }

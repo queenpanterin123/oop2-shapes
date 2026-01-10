@@ -15,9 +15,23 @@ public class Square extends Rectangle{
 
     @Override
     protected void getExtraData(JFrame frame) {
-        a=Double.parseDouble(JOptionPane.showInputDialog(frame,
-                "Enter side lenght: ","80"));
-        b=a;
+        String inA = JOptionPane.showInputDialog(frame,
+                "Enter side lenght: ", "80");
+        if (inA == null){
+            return;
+        }
+        try{
+            a=Double.parseDouble(inA);
+            if (a < 0){
+                JOptionPane.showMessageDialog(frame,"Error: Invalid input");
+            }else{
+                b=a;
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(frame, "Error: Invalid input");
+        }
+
+
     }
 
     public Circle getInscribedCircle(Color color){
@@ -28,7 +42,7 @@ public class Square extends Rectangle{
     @Override
     public String toSVG(){
         Point corner = getCorner();
-        return String.format("<rect width='%f' height='%f' x='%f' y='%f' fill='rgb(%d,%d,%d)' />",
+        return String.format("<rect width=\"%.2f\" height=\"%.2f\" x=\"%.2f\" y=\"%.2f\" fill=\"rgb(%d,%d,%d)\" />",
                 a,a, corner.x,corner.y, color.getRed(),color.getGreen(),color.getBlue());
 
     }
